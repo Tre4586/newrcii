@@ -1,3 +1,3 @@
 function msg(){  
- alert("Josh likes men");  
+ alert("alert");  
 }  
