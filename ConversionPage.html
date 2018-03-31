@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="ConversionPage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+<head>
+ 	<script src="http://code.jquery.com/jquery-1.12.1.js"></script>
+	<script type="text/javascript" src="ConversionPage.js"></script>  
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <title>CSV to JSON</title>
+</head>
+<body>
+    <p>Paste Your CSV Here:</p>
+    <textarea id="csv" class="text"></textarea>
+    <br />
+    <input type="button" value="Convert to JSON" onclick="convertToJSON()"/></button>
+    &nbsp;&nbsp;
+    <textarea id="json" class="text"></textarea>
+    <br>
+    <br>
+  <div id="jstree">
+    <!-- in this example the tree is populated from inline HTML -->
+    <ul>
+      <li>Root node 1
+        <ul>
+          <li id="child_node_1">Child node 1</li>
+          <li>Child node 2</li>
+        </ul>
+      </li>
+      <li>Root node 2</li>
+    </ul>
+  </div>
+   <input type="button" value="Reload" onclick="reloadTree()"/></button>
+</body>
+</html>
+
+
