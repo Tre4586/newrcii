@@ -76,10 +76,12 @@ function CSV2JSON(csv) {
 
 // JSTREE #####################################################################################################
 $(function () {
-    var data = [{"id":"a1","parent":"#","text":"Root node"},
-    {"id":"2","parent":"1","text":"child node 1"},
-    {"id":"3","parent":"1","text":"child node 2"},
-    ];
+    var data = [
+        { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },
+        { "id" : "ajson2", "parent" : "#", "text" : "Root node 2" },
+        { "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },
+        { "id" : "ajson4", "parent" : "ajson2", "text" : "Child 2" },
+     ];
 
    $("#jstree").jstree({ 
      "core" : {
