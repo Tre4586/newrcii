@@ -11,26 +11,29 @@
 </head>
 <body>
     <p>Paste Your CSV Here:</p>
-    <textarea id="csv" class="text"></textarea>
+    <textarea id="csv" class="text">
+"id","parent","text"
+"1","#","Root node"
+"2","1","child node 1"
+"3","1","child node 2"</textarea>
     <br />
+
     <input type="button" value="Convert to JSON" onclick="convertToJSON()"/></button>
     &nbsp;&nbsp;
-    <textarea id="json" class="text"></textarea>
+    
+    <textarea id="json" class="text">
+</textarea>
+    
     <br>
     <br>
+
   <div id="jstree">
     <!-- in this example the tree is populated from inline HTML -->
-    <ul>
-      <li>Root node 1
-        <ul>
-          <li id="child_node_1">Child node 1</li>
-          <li>Child node 2</li>
-        </ul>
-      </li>
-      <li>Root node 2</li>
-    </ul>
   </div>
    <input type="button" value="Reload" onclick="reloadTree()"/></button>
+   <br>
+   <br>
+   <button id="addnode">create a new node</button>
 </body>
 </html>
 

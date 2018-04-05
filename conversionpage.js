@@ -1,3 +1,5 @@
+let rcii_admin = {};
+
 function CSVToArray(strData, strDelimiter) {
     // Check to see if the delimiter is defined. If not,
     // then default to comma.
@@ -52,7 +54,9 @@ function CSVToArray(strData, strDelimiter) {
 
 function CSV2JSON(csv) {
     var array = CSVToArray(csv);
+
     var objArray = [];
+
     for (var i = 1; i < array.length; i++) {
         objArray[i - 1] = {};
         for (var k = 0; k < array[0].length && k < array[i].length; k++) {
@@ -67,33 +71,65 @@ function CSV2JSON(csv) {
     return str;
 }
 
+
+
+
+// JSTREE #####################################################################################################
 $(function () {
-    // create an instance when the DOM is ready
-    $('#jstree').jstree();
+    var data = [{"id":"a1","parent":"#","text":"Root node"},
+    {"id":"2","parent":"1","text":"child node 1"},
+    {"id":"3","parent":"1","text":"child node 2"},
+    ];
 
-    // bind to events triggered on the tree
-    $('#jstree').on("changed.jstree", function (e, data) {
-
-    });
+   $("#jstree").jstree({ 
+     "core" : {
+       // so that create works
+       "check_callback" : true,
+        
+        "data": data
+     },
+    "plugins" : [ "contextmenu",  "dnd"],
+        
+        "contextmenu":{         
+                        "items": {
+                            "create": {
+                                "label": "Add",
+                                "action": function (obj) {
+                                    $('#jstree').jstree().create_node('#' ,  { "id" : "ajson5", "text" : "newly added" }, "last", function(){
+    alert("done");
+ }); 
+},
+                            }
+                        }
+        }
+        
+  }).on('create_node.jstree', function(e, data) {
+    console.log('saved');
 });
+$("#addnode").on("click",function() {
+     $('#jstree').jstree().create_node('#' ,  { "id" : "ajson5", "text" : "newly added" }, "last", function(){
+    alert("done");
+ });
+});
+});
+
+// #################################################################################################################
 
 function convertToJSON(){  
     var csv = $("#csv").val();
     var json = CSV2JSON(csv);
     $("#json").val(json);
-}  
+    rcii_admin.jsonFromText = JSON.parse(json);
+    }
+
 
 function reloadTree() {
     var stuff = [];
-    stuff = document.getElementById('json').value
+    stuff = document.getElementById('json').value;
     
-    alert(stuff);
 
-    $('#jstree').jstree({
-    'core' : {
-        'data' : stuff
-    }
-    });
+    $('#jstree').jstree(true).settings.core.data = rcii_admin.jsonFromText;
+    $('#jstree').jstree(true).refresh();    
 }
 
 // you can do something like this to trigger a click event with the tree
